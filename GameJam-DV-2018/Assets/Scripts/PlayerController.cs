@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rig;
     Vector3 _origPos;
-
+    
     public float speed = 50f;
     private void Awake()
     {
@@ -41,4 +41,12 @@ public class PlayerController : MonoBehaviour
         //Update original position
         _origPos = gameObject.transform.position;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collisiono");
+    }
+
+
+
 }
