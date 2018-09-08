@@ -10,6 +10,8 @@ public abstract class CharacterBaseController : MonoBehaviour {
     [SerializeField] protected int lives;
     [SerializeField] protected string enemyTag;
     [SerializeField] protected int damage;
+    [SerializeField] protected float fireRate;
+    [SerializeField] private float nextFire;
     protected Rigidbody2D rig;
     protected Vector3 origPos;
     protected Vector3 lastDirection = Vector3.right;
@@ -24,7 +26,6 @@ public abstract class CharacterBaseController : MonoBehaviour {
     }
     public void GetDamaged(int damage)
     {
-        Debug.Log("Fue daniado");
         this.lives -= damage;
         this.LoseLife();
         if (lives <= 0)
@@ -36,10 +37,15 @@ public abstract class CharacterBaseController : MonoBehaviour {
 
     protected void Fire()
     {
+        if(Time.time > nextFire)
+        {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
             projectile.GetComponent<Bullet>().enemyTag = enemyTag;
             projectile.GetComponent<Bullet>().damage = damage;
+            nextFire = Time.time + fireRate;
+        }
+            
     }
 
     private void Rotate(Vector3 moveDirection)
