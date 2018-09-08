@@ -36,20 +36,23 @@ public class EnemyController : CharacterBaseController {
 
     protected override void CharacterUpdate()
     {
-        Vector3 moveDirection = Vector3.right;
-        UpdateRotation();
-        if (TargetInFieldOfView() && TargetWithClearVision())
+        if(target != null)
         {
-            moveDirection = target.position - gameObject.transform.position;
-            if (TargetWithClearVision())
+            Vector3 moveDirection = Vector3.right;
+            UpdateRotation();
+            if (TargetInFieldOfView() && TargetWithClearVision())
             {
-                Fire();
+                moveDirection = target.position - gameObject.transform.position;
+                if (TargetWithClearVision())
+                {
+                    Fire();
+                }
             }
-        }
-        else
-            moveDirection = gameObject.transform.position - origPos;
+            else
+                moveDirection = gameObject.transform.position - origPos;
 
-        //Update speed based on the directional movement and the defined movement speed
-        rig.velocity = moveDirection.normalized * speed;
+            //Update speed based on the directional movement and the defined movement speed
+            rig.velocity = moveDirection.normalized * speed;
+        }
     }
 }

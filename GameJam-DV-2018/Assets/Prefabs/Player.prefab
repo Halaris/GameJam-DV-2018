@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114452701432456440}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +90,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  projectileSpeed: 20
+  projectilePrefab: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
+    type: 2}
+  lives: 3
+  enemyTag: Enemy
+  damage: 1
+  fireRate: 0.5
+  nextFire: 0
 --- !u!212 &212014161869429674
 SpriteRenderer:
   m_ObjectHideFlags: 1
