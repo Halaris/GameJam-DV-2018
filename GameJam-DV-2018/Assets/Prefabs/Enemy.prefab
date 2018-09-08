@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203973453519602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 7.01, y: 2.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,14 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc34a95b659a30d45b13719c0d065590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  projectileSpeed: 15
+  speed: 7
+  projectileSpeed: 12
   projectilePrefab: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
     type: 2}
   lives: 1
   enemyTag: Player
   damage: 1
-  fireRate: 0.5
+  fireRate: 1
   nextFire: 0
   sightAngle: 120
   sightDist: 100
@@ -106,7 +106,7 @@ MonoBehaviour:
   wayPoints:
     serializedVersion: 2
     m_Bits: 512
-  target: {fileID: 4437373980490062, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
+  target: {fileID: 0}
   lastVisitedPoint: {fileID: 0}
 --- !u!212 &212782807054982260
 SpriteRenderer:
