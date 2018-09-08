@@ -1,0 +1,25 @@
+aula 303 disponible
+cocina disponible
+pero nada mas
+se puede salir fuera del horario pero hay que pedir permiso y es para situaciones especiales
+
+
+consigna:
+entregar antes de las 17hs del domingo
+https://itch.io/jam/da-vinci-game-jam-2018
+
+
+
+tema: "aquel que mas posee, mas miedo tiene de perderlo"
+
+git gud
+
+
+vidas limites
+enemigos limitados o niveles
+sumar puntos: matar enemigos y vidas restantes
+castigo: Perder una vida te quita puntuacion final y porcentaje de tus puntos actuales
+consuelo: perder una vida te da un bonus en dificultad
+evitar el castigo: evitar pelear, no te da puntos pero evitas perder puntos.
+
+
