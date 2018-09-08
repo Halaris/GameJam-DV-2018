@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rig;
-    Vector3 _origPos;
-    
-    public float speed = 50f;
-    private void Awake()
+	[SerializeField] private float speed;
+	[SerializeField] private float projectileSpeed;
+	[SerializeField] private GameObject laserPrefab;
+	private Rigidbody2D playerRig;
+    private Vector3 playerOrigPos;
+	private Vector3 lastDirection;
+
+	private void Awake()
     {
-        rig = this.GetComponent<Rigidbody2D>();
+        playerRig = this.GetComponent<Rigidbody2D>();
         //Set original position
-        _origPos = gameObject.transform.position;
+        playerOrigPos = gameObject.transform.position;
 
     }
 
@@ -26,26 +29,43 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Obtain direction vector
-        Vector3 moveDirection = gameObject.transform.position - _origPos;
+        Vector3 moveDirection = gameObject.transform.position - playerOrigPos;
 
         if (moveDirection != Vector3.zero)
         {
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
+		if (!moveDirection.Equals(Vector3.zero) && !moveDirection.Equals(lastDirection)) {
+			lastDirection = moveDirection;
+		}
+
         //Obtain directional movement defined on the inputs
         float verticalSpeed = Input.GetAxis("Vertical");
         float horizontalSpeed = Input.GetAxis("Horizontal");
         //Update speed based on the directional movement and the defined movement speed
-        rig.velocity = new Vector2(horizontalSpeed, verticalSpeed) * speed;
-        //Update original position
-        _origPos = gameObject.transform.position;
-    }
+        playerRig.velocity = new Vector2(horizontalSpeed, verticalSpeed) * speed;
+        // shoot a projectile
+		fire();
+		//Update original position
+		playerOrigPos = gameObject.transform.position;
+	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("collisiono");
     }
+
+	public void fire()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+			laser.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x , lastDirection.y) * projectileSpeed;
+		}
+
+	}
 
 
 
