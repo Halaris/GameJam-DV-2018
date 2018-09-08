@@ -20,6 +20,10 @@ public class PlayerController : CharacterBaseController
         {
             Fire();
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            DropMine();
+        }
     }
 
     protected override void Die()
@@ -32,9 +36,13 @@ public class PlayerController : CharacterBaseController
 
     protected override void LoseLife()
     {
-		if (lives >= 0) {
-			Destroy(lifeImgs[lives]);
-		}
+            for(int x=0; x<lifeImgs.Length; x++)
+            {
+                if(x > lives -1)
+                {
+                    Destroy(lifeImgs[x]);
+                }
+            }
     }
 }
 

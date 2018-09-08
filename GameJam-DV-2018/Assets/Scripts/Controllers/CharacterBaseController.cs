@@ -10,6 +10,7 @@ public abstract class CharacterBaseController : MonoBehaviour {
     [SerializeField] protected float speed;
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected GameObject minePrefab;
     [SerializeField] protected long score;
     [SerializeField] protected long currentLifeScore;
     [SerializeField] protected int lives;
@@ -19,7 +20,10 @@ public abstract class CharacterBaseController : MonoBehaviour {
     protected Vector3 origPos;
     protected Vector3 lastDirection = Vector3.right;
     [SerializeField] private float fireRate = 0.5F;
-    [SerializeField]  private float nextFire = 0.0F;
+    [SerializeField] private float nextFire = 0.0F;
+    [SerializeField] private float mineRate = 0.5F;
+    [SerializeField] private float nextMine = 0.0F;
+    [SerializeField] public int minesLeft = 3;
 
 
     private void Awake()
@@ -45,13 +49,31 @@ public abstract class CharacterBaseController : MonoBehaviour {
 		if(Time.time > nextFire)
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
-			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
+            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
 			var bulletController = projectile.GetComponent<BulletController>();
 			bulletController.enemyTag = enemyTag;
 			bulletController.damage = damage;
 			bulletController.sourceTag = gameObject.tag;
-			projectile.gameObject.tag = gameObject.tag + "bullet";
-			nextFire = Time.time + fireRate;
+            projectile.gameObject.tag = gameObject.tag + "bullet";
+            nextFire = Time.time + fireRate;
+
+        }
+
+    }
+
+    protected void DropMine()
+    {
+        if (Time.time > nextMine && minesLeft > 0)
+        {
+
+            GameObject mine = Instantiate(minePrefab, transform.position, transform.rotation) as GameObject;
+            //mine.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
+            var mineController = mine.GetComponent<MineController>();
+            mineController.damage = damage*2;
+            mineController.parent = this;
+            //mine.gameObject.tag = gameObject.tag + "bullet";
+            nextMine = Time.time + mineRate;
+            minesLeft--;
         }
 
     }
