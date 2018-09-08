@@ -82,7 +82,7 @@ public class HighScoreService
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT _id, name, score" +
                                     " FROM HighScore" +
-                                    " ORDER BY score DESC" +
+                                    " ORDER BY score DESC, _id DESC" +
                                     " LIMIT 10;";
 
                 using (var result = cmd.ExecuteReader())

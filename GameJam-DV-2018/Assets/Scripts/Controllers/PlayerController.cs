@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : CharacterBaseController
 {
-	[SerializeField] private GameObject[] lifeImgs;
+    private long MAX_SCORE = 10000;
+
+    [SerializeField] private GameObject[] lifeImgs;
 
     protected override void CharacterUpdate()
     {
@@ -22,6 +24,9 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
+        score -= Mathf.FloorToInt(Mathf.Log10(1 + 9 * currentLifeScore / MAX_SCORE) * score);
+        scoreValueText.text = score.ToString();
+        currentLifeScore = 0;
         Destroy(gameObject, 0);
     }
 

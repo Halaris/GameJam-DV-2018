@@ -11,6 +11,7 @@ public abstract class CharacterBaseController : MonoBehaviour {
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected long score;
+    [SerializeField] protected long currentLifeScore;
     [SerializeField] protected int lives;
     [SerializeField] protected string enemyTag;
     [SerializeField] protected int damage;
@@ -99,6 +100,7 @@ public abstract class CharacterBaseController : MonoBehaviour {
     public void IncreaseScore(long points)
     {
         score += points;
+        currentLifeScore += points;
         scoreValueText.text = score.ToString();
     }
 
