@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class CharacterBaseController : MonoBehaviour {
+
+    public Text scoreValueText;
 
     [SerializeField] protected float speed;
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected long score;
     [SerializeField] protected int lives;
     [SerializeField] protected string enemyTag;
     [SerializeField] protected int damage;
@@ -90,6 +94,12 @@ public abstract class CharacterBaseController : MonoBehaviour {
 	protected bool V3Equal(Vector3 a, Vector3 b)
     {
         return Vector3.SqrMagnitude(a - b) < 0.00000001;
+    }
+
+    public void IncreaseScore(long points)
+    {
+        score += points;
+        scoreValueText.text = score.ToString();
     }
 
     protected abstract void CharacterUpdate();

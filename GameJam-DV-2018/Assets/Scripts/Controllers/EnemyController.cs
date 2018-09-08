@@ -27,6 +27,7 @@ public class EnemyController : CharacterBaseController {
 
     protected override void Die()
     {
+        target.GetComponent<PlayerController>().IncreaseScore(100);
         Destroy(gameObject, 0);
     }
 
