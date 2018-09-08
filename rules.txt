@@ -18,8 +18,13 @@ git gud
 vidas limites
 enemigos limitados o niveles
 sumar puntos: matar enemigos y vidas restantes
-castigo: Perder una vida te quita puntuacion final y porcentaje de tus puntos actuales
+castigo: Perder una vida te quita puntuacion final y porcentaje de tus puntos ganados en esta vida
 consuelo: perder una vida te da un bonus en dificultad
 evitar el castigo: evitar pelear, no te da puntos pero evitas perder puntos.
 
 
+ideas:
+enemigos limitados, en varios niveles.
+mapa estatico, con paredes, los enemigos entrar y salen por algun costado. Ejemplo, pacman, pero pueden desaparecer
+posibilidades de victoria: sobrevivir el nivel o matar un boss
+movimiento libre, no cuadriculado
