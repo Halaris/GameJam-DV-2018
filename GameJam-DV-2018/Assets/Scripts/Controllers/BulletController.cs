@@ -10,7 +10,6 @@ public class BulletController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log(collision.gameObject.tag);
 		if (!(collision.gameObject.tag == sourceTag) && !(collision.gameObject.tag == gameObject.tag))
 		{
 			if (collision.gameObject.tag == enemyTag)
