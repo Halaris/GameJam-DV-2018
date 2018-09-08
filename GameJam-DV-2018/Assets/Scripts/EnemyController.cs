@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour {
         Vector3 forward = transform.position - _origPos;
         float enemyAngle = Vector3.Angle(targetDir, forward);
         var dist = Vector3.Distance(target.position, this.transform.position);
-        if (TargetInFieldOfView())
+        if (TargetInFieldOfView() && TargetWithClearVision())
         {
             moveDirection = target.position - gameObject.transform.position;
             if(TargetWithClearVision())
