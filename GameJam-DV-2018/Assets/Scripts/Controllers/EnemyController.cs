@@ -20,11 +20,11 @@ public class EnemyController : CharacterBaseController
         var dist = Vector3.Distance(targetPoint.position, this.transform.position);
         return (enemyAngle < viewAngle && dist < viewDist);
     }
-    bool TargetWithClearVision(Transform targetPoint)
+    bool TargetWithClearVision(Transform targetPoint, LayerMask maskToAvoid)
     {
         Vector3 dirToTarget = (targetPoint.position - transform.position).normalized;
         float dist = Vector3.Distance(targetPoint.position, this.transform.position);
-        return !Physics2D.Raycast(transform.position, dirToTarget, dist, wall);
+        return !Physics2D.Raycast(transform.position, dirToTarget, dist, maskToAvoid);
     }
 
     protected override void Die()
@@ -44,7 +44,7 @@ public class EnemyController : CharacterBaseController
         foreach (Collider2D wayPointInFieldOfView in wayPointsInViewRadius)
         {
             Transform targetPoint = wayPointInFieldOfView.transform;
-            if (targetPoint != lastVisitedPoint && TargetInFieldOfView(targetPoint, sightAngle, sightDist) && TargetWithClearVision(targetPoint))
+            if (targetPoint != lastVisitedPoint && TargetInFieldOfView(targetPoint, sightAngle, sightDist) && TargetWithClearVision(targetPoint,wall) && TargetWithClearVision(targetPoint, this.gameObject.layer))
             {
                 float dist = Vector3.Distance(targetPoint.position, transform.position);
                 if (dist < 1)
@@ -53,7 +53,8 @@ public class EnemyController : CharacterBaseController
                 }
                 else
                 {
-                    visiblePoints.Add(dist, targetPoint);
+                    float priorityValue = targetPoint.gameObject.GetComponent<WayPointController>().priority * dist;
+                    visiblePoints.Add(priorityValue, targetPoint);
                 }
             }
         }
@@ -68,8 +69,8 @@ public class EnemyController : CharacterBaseController
     {
         if (target != null)
         {
-            Vector3 moveDirection = Vector3.right;
-            if (TargetInFieldOfView(target,sightAngle,sightDist) && TargetWithClearVision(target))
+            Vector3 moveDirection = Vector3.zero;
+            if (TargetInFieldOfView(target,sightAngle,sightDist) && TargetWithClearVision(target, wall))
             {
                 Fire();
                 if (Vector3.Distance(target.position, this.transform.position) >= 3f)
