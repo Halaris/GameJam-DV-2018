@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DBInit : MonoBehaviour {
+public class MainMenuGameManagerController : MonoBehaviour {
 
     private string dbPath;
 
@@ -10,6 +10,7 @@ public class DBInit : MonoBehaviour {
     void Awake ()
     {
         dbPath = "URI=file:" + Application.persistentDataPath + "/database.db";
+        Debug.Log("dbPath: " + dbPath);
 
         HighScoreService highScoreService = new HighScoreService(dbPath);
         highScoreService.CreateTable();
