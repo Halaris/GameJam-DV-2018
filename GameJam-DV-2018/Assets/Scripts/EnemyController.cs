@@ -2,44 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
-    Rigidbody2D rig;
-    Vector3 _origPos;
-
-    public Rigidbody2D bullet;
-    public float speed = 50f;
-    Vector3 moveDirection = Vector3.right;
+public class EnemyController : CharacterBaseController {
+    
     public float sightAngle = 120f;
     public float sightDist = 100f;
     public LayerMask wall;
     public Transform target;
-    private void Awake()
-    {
-        rig = this.GetComponent<Rigidbody2D>();
-        //Set original position
-        _origPos = gameObject.transform.position;
-
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
 
-    void FireBullet()
-    {
-        Rigidbody2D bulletClone = (Rigidbody2D)Instantiate(bullet, transform.position, transform.rotation);
-        bulletClone.velocity = rig.velocity;
-
-        // You can also access other components / scripts of the clone
-        //bulletClone.GetComponent<MyRocketScript>().DoSomething();
-    }
     bool TargetInFieldOfView()
     {
         Vector3 targetDir = target.position - transform.position;
-        Vector3 forward = transform.position - _origPos;
+        Vector3 forward = transform.position - origPos;
         float enemyAngle = Vector3.Angle(targetDir, forward);
         var dist = Vector3.Distance(target.position, this.transform.position);
         return (enemyAngle < sightAngle && dist < sightDist);
@@ -50,35 +24,32 @@ public class EnemyController : MonoBehaviour {
         var dist = Vector3.Distance(target.position, this.transform.position);
         return !Physics2D.Raycast(transform.position, dirToTarget, dist, wall);
     }
-    // Update is called once per frame
-    void Update()
+
+    protected override void Die()
     {
-        Vector3 targetDir = target.position - transform.position;
-        Vector3 forward = transform.position - _origPos;
-        float enemyAngle = Vector3.Angle(targetDir, forward);
-        var dist = Vector3.Distance(target.position, this.transform.position);
+        Destroy(gameObject, 0);
+    }
+
+    protected override void LoseLife()
+    { 
+    }
+
+    protected override void CharacterUpdate()
+    {
+        Vector3 moveDirection = Vector3.right;
+        UpdateRotation();
         if (TargetInFieldOfView() && TargetWithClearVision())
         {
             moveDirection = target.position - gameObject.transform.position;
-            if(TargetWithClearVision())
+            if (TargetWithClearVision())
             {
-                //Shoot
+                Fire();
             }
         }
         else
-            moveDirection = gameObject.transform.position - _origPos;
+            moveDirection = gameObject.transform.position - origPos;
 
-        if (moveDirection != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        //Obtain directional movement defined on the inputs
-        float verticalSpeed = Random.Range(-1, 1);
-        float horizontalSpeed = Random.Range(-1, 1);
         //Update speed based on the directional movement and the defined movement speed
         rig.velocity = moveDirection.normalized * speed;
-        //Update original position
-        _origPos = gameObject.transform.position;
     }
 }

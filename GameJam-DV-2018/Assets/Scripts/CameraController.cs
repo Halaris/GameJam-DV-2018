@@ -21,14 +21,17 @@ public class CameraController : MonoBehaviour {
 
     void Update()
     {
-        Vector3 playerPos = player.transform.position;
-        playerPos.z = 0;
-        Vector3 cameraPos = this.transform.position;
-        cameraPos.z = 0;
-        float distance = Vector3.Distance(playerPos, cameraPos);
-        float proportionOfDistance = (distance < maxDistanceFromPlayer ? distance / maxDistanceFromPlayer : 1);
-        cameraPos += (playerPos - cameraPos) * (proportionOfDistance);
-        cameraPos.z = cameraHeight;
-        transform.position = cameraPos;
+        if(player != null)
+        {
+            Vector3 playerPos = player.transform.position;
+            playerPos.z = 0;
+            Vector3 cameraPos = this.transform.position;
+            cameraPos.z = 0;
+            float distance = Vector3.Distance(playerPos, cameraPos);
+            float proportionOfDistance = (distance < maxDistanceFromPlayer ? distance / maxDistanceFromPlayer : 1);
+            cameraPos += (playerPos - cameraPos) * (proportionOfDistance);
+            cameraPos.z = cameraHeight;
+            transform.position = cameraPos;
+        }
     }
 }
