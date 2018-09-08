@@ -33,13 +33,15 @@ public abstract class CharacterBaseController : MonoBehaviour {
         }
     }
 
-
     protected void Fire()
     {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
-            projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
-            projectile.GetComponent<BulletController>().enemyTag = enemyTag;
-            projectile.GetComponent<BulletController>().damage = damage;
+        GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
+		var bulletController = projectile.GetComponent<BulletController>();
+		bulletController.enemyTag = enemyTag;
+		bulletController.damage = damage;
+		bulletController.sourceTag = gameObject.tag;
+		projectile.gameObject.tag = gameObject.tag + "bullet";
     }
 
     private void Rotate(Vector3 moveDirection)
@@ -78,11 +80,11 @@ public abstract class CharacterBaseController : MonoBehaviour {
         CharacterUpdate();
     }
 
-
-    protected bool V3Equal(Vector3 a, Vector3 b)
+	protected bool V3Equal(Vector3 a, Vector3 b)
     {
         return Vector3.SqrMagnitude(a - b) < 0.00000001;
     }
+
     protected abstract void CharacterUpdate();
     protected abstract void LoseLife();
     protected abstract void Die();
