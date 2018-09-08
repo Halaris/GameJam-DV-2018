@@ -13,8 +13,10 @@ public abstract class CharacterBaseController : MonoBehaviour {
     protected Rigidbody2D rig;
     protected Vector3 origPos;
     protected Vector3 lastDirection = Vector3.right;
+    [SerializeField] private float fireRate = 0.5F;
+    [SerializeField]  private float nextFire = 0.0F;
 
-   
+
     private void Awake()
     {
         rig = this.GetComponent<Rigidbody2D>();
@@ -36,10 +38,15 @@ public abstract class CharacterBaseController : MonoBehaviour {
 
     protected void Fire()
     {
+        if(Time.time > nextFire)
+        {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
             projectile.GetComponent<BulletController>().enemyTag = enemyTag;
             projectile.GetComponent<BulletController>().damage = damage;
+            nextFire = Time.time + fireRate;
+        }
+
     }
 
     private void Rotate(Vector3 moveDirection)
