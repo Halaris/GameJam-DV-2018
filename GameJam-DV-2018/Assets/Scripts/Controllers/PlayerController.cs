@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : CharacterBaseController
 {
+	[SerializeField] private GameObject[] lifeImgs;
+
     protected override void CharacterUpdate()
     {
         //Obtain directional movement defined on the inputs
@@ -25,6 +27,9 @@ public class PlayerController : CharacterBaseController
 
     protected override void LoseLife()
     {
+		if (lives >= 0) {
+			Destroy(lifeImgs[lives]);
+		}
     }
 }
 
