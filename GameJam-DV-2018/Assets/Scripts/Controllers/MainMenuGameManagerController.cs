@@ -6,7 +6,6 @@ public class MainMenuGameManagerController : MonoBehaviour {
 
     private string dbPath;
 
-    // Use this for initialization
     void Awake ()
     {
         dbPath = "URI=file:" + Application.persistentDataPath + "/database.db";
@@ -14,6 +13,13 @@ public class MainMenuGameManagerController : MonoBehaviour {
 
         HighScoreService highScoreService = new HighScoreService(dbPath);
         highScoreService.CreateTable();
+        if(highScoreService.List().Count < 10)
+        {
+            for(int i = 10; i > 0; i--)
+            {
+                highScoreService.Insert(i % 2 == 0 ? "GIT" : "GUD", i * 1000);
+            }
+        }
     }
 
 }
