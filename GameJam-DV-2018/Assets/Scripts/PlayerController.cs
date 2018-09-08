@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private float speed;
 	[SerializeField] private float projectileSpeed;
-	[SerializeField] private GameObject laserPrefab;
+	[SerializeField] private GameObject projectilePrefab;
 	private Rigidbody2D playerRig;
     private Vector3 playerOrigPos;
-	private Vector3 lastDirection;
+	private Vector3 lastDirection = Vector3.right;
 
 	private void Awake()
     {
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
-		if (!moveDirection.Equals(Vector3.zero) && !moveDirection.Equals(lastDirection)) {
-			lastDirection = moveDirection;
+		if (!V3Equal(moveDirection, Vector3.zero)) {
+			lastDirection = moveDirection.normalized;
 		}
 
         //Obtain directional movement defined on the inputs
@@ -61,10 +61,15 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+			GameObject laser = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
 			laser.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x , lastDirection.y) * projectileSpeed;
 		}
 
+	}
+
+	public bool V3Equal(Vector3 a, Vector3 b)
+	{
+		return Vector3.SqrMagnitude(a - b) < 0.00000001;
 	}
 
 
