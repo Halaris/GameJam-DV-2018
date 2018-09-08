@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation) as GameObject;
+			GameObject projectile = Instantiate(projectilePrefab, transform.position + lastDirection, transform.rotation) as GameObject;
 			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x , lastDirection.y) * projectileSpeed;
 		}
 
