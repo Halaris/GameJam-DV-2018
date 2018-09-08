@@ -780,6 +780,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
+        type: 2}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: projectileSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
   m_IsPrefabAsset: 0
