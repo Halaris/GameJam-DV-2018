@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907010779648716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.97, y: 0.71, z: 1}
+  m_LocalPosition: {x: -10, y: 0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,15 +89,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ca7cd7620293f4781e5bd2de0b8b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValueText: {fileID: 0}
   speed: 15
   projectileSpeed: 20
   projectilePrefab: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
     type: 2}
+  minePrefab: {fileID: 1337174867245700, guid: 63c3622e53bd7de458c5f6f4aa5e180b, type: 2}
+  score: 0
   lives: 3
   enemyTag: Enemy
   damage: 1
   fireRate: 0.5
   nextFire: 0
+  mineRate: 0.5
+  nextMine: 0
+  minesLeft: 3
+  lifeImgs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212014161869429674
 SpriteRenderer:
   m_ObjectHideFlags: 1

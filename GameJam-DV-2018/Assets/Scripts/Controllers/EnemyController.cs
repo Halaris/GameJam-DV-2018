@@ -73,7 +73,6 @@ public class EnemyController : CharacterBaseController
             Vector3 moveDirection = Vector3.zero;
             if (TargetInFieldOfView(target,sightAngle,sightDist) && TargetWithClearVision(target, wall))
             {
-                Fire();
                 if (Vector3.Distance(target.position, this.transform.position) >= 3f)
                 {
 
@@ -88,6 +87,7 @@ public class EnemyController : CharacterBaseController
 
                     moveDirection = Vector3.zero;
                 }
+                Fire();
             }
             else
             {
