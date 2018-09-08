@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
 
 	public void fire()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetButtonDown("Fire1"))
 		{
-			GameObject laser = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
-			laser.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x , lastDirection.y) * projectileSpeed;
+			GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation) as GameObject;
+			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x , lastDirection.y) * projectileSpeed;
 		}
 
 	}
