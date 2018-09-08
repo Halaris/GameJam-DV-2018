@@ -27,7 +27,6 @@ public class CameraController : MonoBehaviour {
         cameraPos.z = 0;
         float distance = Vector3.Distance(playerPos, cameraPos);
         float proportionOfDistance = (distance < maxDistanceFromPlayer ? distance / maxDistanceFromPlayer : 1);
-        Debug.Log("proportionOfDistance: " + proportionOfDistance + ", distance: " + (playerPos - cameraPos));
         cameraPos += (playerPos - cameraPos) * (proportionOfDistance);
         cameraPos.z = cameraHeight;
         transform.position = cameraPos;
