@@ -42,18 +42,21 @@ public class LevelGameManagerController : MonoBehaviour
                     Time.timeScale = 1;
                 }
 
+            } else if (LevelGameManagerController.pause && Input.GetButtonDown("Cancel"))
+            {
+                Application.Quit();
+            }
+            if (player.score >= (player.MAX_SCORE * dificulty))
+            {
+
                 foreach (Transform spawn in spawners)
                 {
-
                     spawn.GetComponent<EnemySpawnerController>().maxQuantityEnemy++;
                 }
+
                 dificulty += 1f / 3f;
             }
 
-        }
-        else if (LevelGameManagerController.pause && Input.GetButtonDown("Cancel"))
-        {
-            Application.Quit();
         }
         else
         {
@@ -61,21 +64,7 @@ public class LevelGameManagerController : MonoBehaviour
             size += Input.GetAxis("Mouse ScrollWheel") * (-sensitivity);
             size = Mathf.Clamp(size, minSize, maxSize);
             Camera.main.orthographicSize = size;
-            if (player.score >= (player.MAX_SCORE * dificulty))
-            {
-
-                foreach (Transform spawn in spawners)
-                {
-                    #pragma warning disable CS0618 // Type or member is obsolete
-                    if (!spawn.gameObject.active)
-                    #pragma warning restore CS0618 // Type or member is obsolete
-                    {
-                        spawn.gameObject.SetActive(true);
-                        dificulty += 1f / 3f;
-                        break;
-                    }
-                }
-            }
+            
         }
     }
 }
