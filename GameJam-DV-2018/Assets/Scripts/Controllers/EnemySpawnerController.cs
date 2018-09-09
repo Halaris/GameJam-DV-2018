@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class EnemySpawnerController : MonoBehaviour {
 
-    [SerializeField] protected Transform enemyGroup;
     [SerializeField] protected GameObject enemyPrefab;
-    [SerializeField] private float spawnRate = 0.5F;
+    [SerializeField] private float spawnRate = 3F;
     [SerializeField] private float nextSpawn = 0.0F;
     [SerializeField] private int maxQuantityEnemy = 5;
+    [SerializeField] private Transform target;
+    [SerializeField] private LayerMask characters;
+    [SerializeField] private float characterMinConflictRange = 3F;
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Time.time > nextSpawn)
         {
-            if (enemyGroup.childCount < maxQuantityEnemy)
+            if (transform.childCount < maxQuantityEnemy)
             {
-                GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation) as GameObject;
-                var bulletController = newEnemy.GetComponent<EnemyController>();
-                newEnemy.transform.SetParent(enemyGroup);
-                /*bulletController.enemyTag = enemyTag;
-                bulletController.damage = damage;
-                bulletController.sourceTag = gameObject.tag;
-                newEnemy.gameObject.tag = gameObject.tag + "bullet";*/
+                int len = Physics2D.OverlapCircleAll(transform.position, characterMinConflictRange, characters).Length;
+                Debug.Log(len);
+                if (len == 0) {
+                    GameObject newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation) as GameObject;
+                    var enemyController = newEnemy.GetComponent<EnemyController>();
+                    newEnemy.transform.SetParent(transform);
+                    enemyController.target = target;
+                    nextSpawn = Time.time + spawnRate;
+                }
             }
-            nextSpawn = Time.time + spawnRate;
         }
     }
 }

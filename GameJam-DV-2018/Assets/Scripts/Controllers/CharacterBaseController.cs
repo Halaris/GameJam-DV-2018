@@ -11,10 +11,7 @@ public abstract class CharacterBaseController : MonoBehaviour {
     [SerializeField] protected float projectileSpeed;
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected GameObject minePrefab;
-    [SerializeField] public long score {
-		get;
-		set;
-	}
+    [SerializeField] public long score;
     [SerializeField] protected long currentLifeScore;
     [SerializeField] protected int lives;
     [SerializeField] protected string enemyTag;

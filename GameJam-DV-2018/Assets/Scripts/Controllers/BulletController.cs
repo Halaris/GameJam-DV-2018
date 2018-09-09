@@ -15,13 +15,13 @@ public class BulletController : MonoBehaviour {
 			if (collision.gameObject.tag == enemyTag)
 			{
 				CharacterBaseController enemyChar = collision.gameObject.GetComponent<CharacterBaseController>();
-				Debug.Log(enemyChar);
 				if (enemyChar != null)
 				{
 					enemyChar.GetDamaged(damage);
 				}
 			}
-			Destroy(gameObject);
+            if(collision.gameObject.layer == 10 || collision.gameObject.layer == 8 || collision.gameObject.layer == 11)
+			    Destroy(gameObject);
 		}	
 	}
 }

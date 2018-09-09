@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBaseController
 {
-    private long MAX_SCORE = 10000;
+    public long MAX_SCORE = 1000;
 	[SerializeField] private GameObject[] lifeImgs;
 
 	protected override void CharacterUpdate()
