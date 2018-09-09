@@ -42,7 +42,7 @@ public class MineController : MonoBehaviour
         }
 
 		parent.minesLeft++;
-        GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        Instantiate(explosion, transform.position, transform.rotation);
 		Instantiate(explosionAS, transform.position, transform.rotation);
 		Destroy(gameObject);
     }
