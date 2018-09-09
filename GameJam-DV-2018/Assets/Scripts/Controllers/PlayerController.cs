@@ -28,21 +28,21 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
-        score -= Mathf.FloorToInt(Mathf.Log10(1 + 9 * currentLifeScore / MAX_SCORE) * score);
-        scoreValueText.text = score.ToString();
-        currentLifeScore = 0;
         Destroy(gameObject, 0);
     }
 
     protected override void LoseLife()
     {
-            for(int x=0; x<lifeImgs.Length; x++)
+        score -= Mathf.RoundToInt(Mathf.Log10(1f + 9f * currentLifeScore / MAX_SCORE) * score);
+        scoreValueText.text = score.ToString();
+        currentLifeScore = 0;
+        for (int x = 0; x < lifeImgs.Length; x++)
+        {
+            if(x > lives -1)
             {
-                if(x > lives -1)
-                {
-                    Destroy(lifeImgs[x]);
-                }
+                Destroy(lifeImgs[x]);
             }
+        }
     }
 }
 

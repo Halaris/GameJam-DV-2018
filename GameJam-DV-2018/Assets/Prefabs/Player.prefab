@@ -96,6 +96,7 @@ MonoBehaviour:
     type: 2}
   minePrefab: {fileID: 1337174867245700, guid: 63c3622e53bd7de458c5f6f4aa5e180b, type: 2}
   score: 0
+  currentLifeScore: 0
   lives: 3
   enemyTag: Enemy
   damage: 1
