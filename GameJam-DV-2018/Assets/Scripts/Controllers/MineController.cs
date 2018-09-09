@@ -45,6 +45,9 @@ public class MineController : MonoBehaviour
     void Update()
     {
         if (creationTime + activationTime <= Time.time)
+        {
+            GetComponent<Animator>().SetTrigger("Active");
             GetComponent<Collider2D>().enabled = true;
+        }
     }
 }
