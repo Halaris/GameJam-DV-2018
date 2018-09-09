@@ -9,7 +9,7 @@ public class LifeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Instantiate(lifeDeployAS, transform.position, transform.rotation).Play();
+		Destroy(Instantiate(lifeDeployAS, transform.position, transform.rotation),1);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,7 +22,7 @@ public class LifeController : MonoBehaviour {
                 player.lives++;
                 player.updateLife();
             }
-			Instantiate(lifeCollAS, transform.position, transform.rotation).Play();
+			Destroy(Instantiate(lifeCollAS, transform.position, transform.rotation), 1);
 			Destroy(gameObject);
         }
     }
