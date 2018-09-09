@@ -44,7 +44,7 @@ public class EnemyController : CharacterBaseController
         //Search player and try to attack it
         if (searchPlayer())
         {
-            currentAction = Action.followingPath;
+            currentAction = Action.followingPlayer;
         }
         else if (currentTarget == null) //If there is no player on view and it have no current target, it execute it,s corresponding action
         {
