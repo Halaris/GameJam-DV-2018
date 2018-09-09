@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelGameManagerController : MonoBehaviour {
     public float minSize = 1f;
@@ -14,50 +15,56 @@ public class LevelGameManagerController : MonoBehaviour {
     [SerializeField] private Transform[] spawners;
     private float dificulty =( 1f / 3f);
     public static bool pause = false;
+	Scene currentScene;
 
 	private void Start()
 	{
 		DontDestroyOnLoad(this);
+		currentScene = SceneManager.GetActiveScene();
 	}
 
 	void Update ()
     {
-        if(Input.GetButtonDown("Jump"))
-        {
-            LevelGameManagerController.pause = !LevelGameManagerController.pause;
-            if (LevelGameManagerController.pause)
-            {
-                Time.timeScale = 0;
-                pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
-            } else
-            {
-                pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
-                Time.timeScale = 1;
-            }
-            
-        } else if (LevelGameManagerController.pause && Input.GetButtonDown("Cancel"))
-        {
-            Application.Quit();
-        } else
-        {
-            float size = Camera.main.orthographicSize;
-            size += Input.GetAxis("Mouse ScrollWheel") * (-sensitivity);
-            size = Mathf.Clamp(size, minSize, maxSize);
-            Camera.main.orthographicSize = size;
-            if (player.score >= (player.MAX_SCORE * dificulty))
-            {
+		if (currentScene.name == "Level-1") {
+			if (Input.GetButtonDown("Jump"))
+			{
+				LevelGameManagerController.pause = !LevelGameManagerController.pause;
+				if (LevelGameManagerController.pause)
+				{
+					Time.timeScale = 0;
+					pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
+				}
+				else
+				{
+					pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
+					Time.timeScale = 1;
+				}
 
-                foreach (Transform spawn in spawners)
-                {
-                    if (!spawn.gameObject.active)
-                    {
-                        spawn.gameObject.active = true;
-                        dificulty += 1f / 3f;
-                        break;
-                    }
-                }
-            }
-        }
-        
+			}
+			else if (LevelGameManagerController.pause && Input.GetButtonDown("Cancel"))
+			{
+				Application.Quit();
+			}
+			else
+			{
+				float size = Camera.main.orthographicSize;
+				size += Input.GetAxis("Mouse ScrollWheel") * (-sensitivity);
+				size = Mathf.Clamp(size, minSize, maxSize);
+				Camera.main.orthographicSize = size;
+				if (player.score >= (player.MAX_SCORE * dificulty))
+				{
+
+					foreach (Transform spawn in spawners)
+					{
+						if (!spawn.gameObject.active)
+						{
+							spawn.gameObject.SetActive(true);
+							dificulty += 1f / 3f;
+							break;
+						}
+					}
+				}
+			}
+		}
     }
 }

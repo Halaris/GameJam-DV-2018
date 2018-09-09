@@ -44,15 +44,7 @@ public class PlayerController : CharacterBaseController
     {
         for (int x = 0; x < lifeImgs.Length; x++)
         {
-            if (x > lives - 1)
-            {
-                lifeImgs[x].active = false;
-            }
-            else
-            {
-                lifeImgs[x].active = true;
-            }
-
+			lifeImgs[x].SetActive(!(x > lives - 1));
         }
     }
     protected override void LoseLife()
