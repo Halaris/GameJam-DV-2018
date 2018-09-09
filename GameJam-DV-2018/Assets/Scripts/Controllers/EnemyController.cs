@@ -20,7 +20,7 @@ public class EnemyController : CharacterBaseController
     public LayerMask wayPoints;
     public Transform target;
     [SerializeField] protected GameObject lifePrefab;
-    [SerializeField] protected static float chanceToSpawnLife = 0.5F;
+    [SerializeField] protected static float chanceToSpawnLife = 0.001F;
     [SerializeField] private Stack<Transform> visitedPoints = new Stack<Transform>();
     [SerializeField] private string wayPointLayer;
     [SerializeField] private GameObject explosion;
@@ -190,7 +190,7 @@ public class EnemyController : CharacterBaseController
         spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
         GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
-		Destroy(Instantiate(audioSource, transform.position, transform.rotation), 1);
+		Instantiate(audioSource, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
