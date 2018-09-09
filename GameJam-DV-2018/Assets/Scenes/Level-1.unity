@@ -173,6 +173,7 @@ MonoBehaviour:
   lifePrefab: {fileID: 1140641906629900, guid: ff5139169ee683e478f2be6124865e38, type: 2}
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
+  explosion: {fileID: 1160228320192210, guid: 150e2bd790c24004aa7aa5656becf191, type: 2}
 --- !u!50 &252085052
 Rigidbody2D:
   serializedVersion: 4
@@ -1005,7 +1006,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4289275328100270, guid: 818a2026e059277438fde04d96833910, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8195094282413386476, guid: 818a2026e059277438fde04d96833910,
         type: 2}
@@ -41354,8 +41355,77 @@ Transform:
   - {fileID: 929581112}
   - {fileID: 1380001808}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &842344209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1687320454036362, guid: 818a2026e059277438fde04d96833910,
+    type: 2}
+  m_PrefabInternal: {fileID: 824163170}
+--- !u!212 &842344212
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842344209}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.64, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &842344213
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842344209}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb2796b4539045c4da74a19e1d6d664e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &844947564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4043381017821636, guid: 1fa1ee424fef2a14f8b6c8c084c31778,
@@ -42072,6 +42142,7 @@ MonoBehaviour:
   lifePrefab: {fileID: 1140641906629900, guid: ff5139169ee683e478f2be6124865e38, type: 2}
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
+  explosion: {fileID: 1160228320192210, guid: 150e2bd790c24004aa7aa5656becf191, type: 2}
 --- !u!50 &1353749941
 Rigidbody2D:
   serializedVersion: 4
@@ -42635,7 +42706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4437373980490062, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
         type: 2}
@@ -42766,6 +42837,7 @@ MonoBehaviour:
   lifePrefab: {fileID: 1140641906629900, guid: ff5139169ee683e478f2be6124865e38, type: 2}
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
+  explosion: {fileID: 1160228320192210, guid: 150e2bd790c24004aa7aa5656becf191, type: 2}
 --- !u!50 &1721883126
 Rigidbody2D:
   serializedVersion: 4
@@ -42961,7 +43033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1941024026 stripped
 Transform:
@@ -43000,7 +43072,7 @@ Transform:
   - {fileID: 1467992578}
   - {fileID: 1430835116}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1977326831
 Prefab:
@@ -43189,7 +43261,7 @@ RectTransform:
   - {fileID: 1502425798}
   - {fileID: 595177440}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

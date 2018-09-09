@@ -117,6 +117,7 @@ MonoBehaviour:
   lifePrefab: {fileID: 1140641906629900, guid: ff5139169ee683e478f2be6124865e38, type: 2}
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
+  explosion: {fileID: 1160228320192210, guid: 150e2bd790c24004aa7aa5656becf191, type: 2}
 --- !u!212 &212782807054982260
 SpriteRenderer:
   m_ObjectHideFlags: 1
