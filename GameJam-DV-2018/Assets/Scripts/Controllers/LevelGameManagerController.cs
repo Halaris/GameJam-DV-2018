@@ -10,8 +10,10 @@ public class LevelGameManagerController : MonoBehaviour {
 	public static long score = 0;
 	public static bool playerAlive = true;
     [SerializeField] private PlayerController player;
+    [SerializeField] private Transform pauseScreen;
     [SerializeField] private Transform[] spawners;
     private float dificulty =( 1f / 3f);
+    public static bool pause = false;
 
 	private void Start()
 	{
@@ -20,22 +22,42 @@ public class LevelGameManagerController : MonoBehaviour {
 
 	void Update ()
     {
-        float size = Camera.main.orthographicSize;
-        size += Input.GetAxis("Mouse ScrollWheel") * (-sensitivity);
-        size = Mathf.Clamp(size, minSize, maxSize);
-        Camera.main.orthographicSize = size;
-        if(player.score >= (player.MAX_SCORE * dificulty))
+        if(Input.GetButtonDown("Jump"))
         {
-            
-            foreach (Transform spawn in spawners)
+            LevelGameManagerController.pause = !LevelGameManagerController.pause;
+            if (LevelGameManagerController.pause)
             {
-                if(!spawn.gameObject.active)
+                Time.timeScale = 0;
+                pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
+            } else
+            {
+                pauseScreen.gameObject.SetActive(LevelGameManagerController.pause);
+                Time.timeScale = 1;
+            }
+            
+        } else if (LevelGameManagerController.pause && Input.GetButtonDown("Cancel"))
+        {
+            Application.Quit();
+        } else
+        {
+            float size = Camera.main.orthographicSize;
+            size += Input.GetAxis("Mouse ScrollWheel") * (-sensitivity);
+            size = Mathf.Clamp(size, minSize, maxSize);
+            Camera.main.orthographicSize = size;
+            if (player.score >= (player.MAX_SCORE * dificulty))
+            {
+
+                foreach (Transform spawn in spawners)
                 {
-                    spawn.gameObject.active = true;
-                    dificulty += 1f / 3f;
-                    break;
+                    if (!spawn.gameObject.active)
+                    {
+                        spawn.gameObject.active = true;
+                        dificulty += 1f / 3f;
+                        break;
+                    }
                 }
             }
         }
+        
     }
 }
