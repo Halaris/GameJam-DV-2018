@@ -118,6 +118,8 @@ MonoBehaviour:
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
   explosion: {fileID: 1160228320192210, guid: 150e2bd790c24004aa7aa5656becf191, type: 2}
+  audioSource: {fileID: 82589778609169304, guid: a4dbe6efa51da134797494553dcbc7ab,
+    type: 2}
 --- !u!212 &212782807054982260
 SpriteRenderer:
   m_ObjectHideFlags: 1

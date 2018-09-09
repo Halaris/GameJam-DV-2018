@@ -101,10 +101,11 @@ MonoBehaviour:
   enemyTag: Enemy
   damage: 1
   fireRate: 0.5
-  nextFire: 0
   mineRate: 0.5
+  nextFire: 0
   nextMine: 0
   minesLeft: 3
+  MAX_SCORE: 1000
   lifeImgs:
   - {fileID: 0}
   - {fileID: 0}

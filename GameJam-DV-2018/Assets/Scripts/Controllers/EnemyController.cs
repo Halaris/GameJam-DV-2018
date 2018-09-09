@@ -38,8 +38,8 @@ public class EnemyController : CharacterBaseController
         spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
         GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
-		Instantiate(audioSource, transform.position, transform.rotation).Play();
-        Destroy(gameObject, 0);
+		Destroy(Instantiate(audioSource, transform.position, transform.rotation), 1);
+        Destroy(gameObject);
     }
     private void spawnLife()
     {

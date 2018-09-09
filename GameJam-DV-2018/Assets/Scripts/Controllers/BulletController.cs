@@ -11,7 +11,7 @@ public class BulletController : MonoBehaviour {
 
 	private void Start()
 	{
-		Instantiate(bulletAS, transform.position, transform.rotation).Play();
+		Destroy(Instantiate(bulletAS, transform.position, transform.rotation), 1);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

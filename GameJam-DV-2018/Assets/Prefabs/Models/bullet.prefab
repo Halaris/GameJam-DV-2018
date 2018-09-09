@@ -92,6 +92,7 @@ MonoBehaviour:
   damage: 0
   enemyTag: 
   sourceTag: 
+  bulletAS: {fileID: 82762625876201778, guid: 92a7e86649121464ea1d6e2501fea716, type: 2}
 --- !u!212 &212042342476195888
 SpriteRenderer:
   m_ObjectHideFlags: 1
