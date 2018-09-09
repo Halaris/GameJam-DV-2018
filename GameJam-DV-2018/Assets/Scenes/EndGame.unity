@@ -1056,7 +1056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'MUSIC BY: Head vs Wall / Apache Tomcat / Atomicos'
+  m_Text: 'MUSIC BY: Apache Tomcat / Atomicos / Head vs Wall'
 --- !u!222 &1238733406
 CanvasRenderer:
   m_ObjectHideFlags: 0
