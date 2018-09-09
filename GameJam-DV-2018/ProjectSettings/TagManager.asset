@@ -9,6 +9,7 @@ TagManager:
   - Playerbullet
   - Enemybullet
   - Bullet
+  - HighScoreRow
   layers:
   - Default
   - TransparentFX
