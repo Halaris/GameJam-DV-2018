@@ -37,11 +37,15 @@ public class EndGameManagerController : MonoBehaviour {
 
     private void Update()
 	{
-		if (nameInput.text != null && nameInput.text != "" && (Input.GetButtonDown("Submit"))) {
-			persistScore(nameInput.text, LevelGameManagerController.score);
+		if (Input.GetButtonDown("Submit")) {
+			if (nameInput.text != null && nameInput.text != "")
+			{
+				persistScore(nameInput.text, LevelGameManagerController.score);
+			}
 			Destroy(GameObject.Find("LevelGameManagerController"));
 			SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Single);
 		}
+		
 	}
 
 	private void success()

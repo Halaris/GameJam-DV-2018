@@ -20,7 +20,7 @@ public class MineController : MonoBehaviour
     void Start()
     {
         creationTime = Time.time;
-		Destroy(Instantiate(deployAS, transform.position, transform.rotation),1);
+		Instantiate(deployAS, transform.position, transform.rotation);
     }
 
     bool TargetWithClearVision(Transform targetPoint, LayerMask maskToAvoid)
@@ -43,7 +43,7 @@ public class MineController : MonoBehaviour
 
 		parent.minesLeft++;
         GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
-		Destroy(Instantiate(explosionAS, transform.position, transform.rotation),1);
+		Instantiate(explosionAS, transform.position, transform.rotation);
 		Destroy(gameObject);
     }
 
