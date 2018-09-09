@@ -26,7 +26,7 @@ public class PlayerController : CharacterBaseController
         {
             DropMine();
         }
-        if (score == MAX_SCORE)
+        if (score >= MAX_SCORE)
         {
             LevelGameManagerController.score = score;
             LevelGameManagerController.playerAlive = true;
