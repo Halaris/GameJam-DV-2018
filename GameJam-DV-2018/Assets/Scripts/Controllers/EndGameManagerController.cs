@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndGameManagerController : MonoBehaviour {
 
@@ -10,7 +11,6 @@ public class EndGameManagerController : MonoBehaviour {
 	[SerializeField] Text nameText;
 	[SerializeField] InputField nameInput;
 	[SerializeField] Text creditsTitle;
-	public static string item;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +31,8 @@ public class EndGameManagerController : MonoBehaviour {
 	private void Update()
 	{
 		if (nameInput.text != null && nameInput.text != "" && Input.GetKeyDown(KeyCode.Return)) {
-
+			persistScore(nameInput.text, LevelGameManagerController.score);
+			SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Single);
 		}
 	}
 
@@ -43,5 +44,12 @@ public class EndGameManagerController : MonoBehaviour {
 	private void fail()
 	{
 		subTitleText.text = ("YOU FAIL");
+	}
+
+	private void persistScore(string name, long value) {
+		string dbPath = "URI=file:" + Application.persistentDataPath + "/database.db";
+		Debug.Log("dbPath: " + dbPath);
+		HighScoreService highScoreService = new HighScoreService(dbPath);
+		highScoreService.Insert(name, value);
 	}
 }
