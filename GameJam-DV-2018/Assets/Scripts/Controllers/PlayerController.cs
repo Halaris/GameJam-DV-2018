@@ -8,9 +8,9 @@ public class PlayerController : CharacterBaseController
 {
     public long MAX_SCORE = 1000;
 
-	[SerializeField] private GameObject[] lifeImgs;
+    [SerializeField] private GameObject[] lifeImgs;
 
-	protected override void CharacterUpdate()
+    protected override void CharacterUpdate()
     {
         //Obtain directional movement defined on the inputs
         float verticalSpeed = Input.GetAxis("Vertical");
@@ -26,20 +26,35 @@ public class PlayerController : CharacterBaseController
         {
             DropMine();
         }
-		if (score == MAX_SCORE) {
-			LevelGameManagerController.score = score;
-			LevelGameManagerController.playerAlive = true;
-			SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
-		}
+        if (score == MAX_SCORE)
+        {
+            LevelGameManagerController.score = score;
+            LevelGameManagerController.playerAlive = true;
+            SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
+        }
     }
 
     protected override void Die()
     {
-		LevelGameManagerController.score = score;
-		LevelGameManagerController.playerAlive = false;
-		SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
+        LevelGameManagerController.score = score;
+        LevelGameManagerController.playerAlive = false;
+        SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
     }
+    public void updateLife()
+    {
+        for (int x = 0; x < lifeImgs.Length; x++)
+        {
+            if (x > lives - 1)
+            {
+                lifeImgs[x].active = false;
+            }
+            else
+            {
+                lifeImgs[x].active = true;
+            }
 
+        }
+    }
     protected override void LoseLife()
     {
         score -= Mathf.RoundToInt(Mathf.Log10(1f + 9f * currentLifeScore / MAX_SCORE) * score);
@@ -50,17 +65,7 @@ public class PlayerController : CharacterBaseController
         fireRate *= 0.8f;
         mineRate *= 0.8f;
         minesLeft += 1;
-
-        for (int x = 0; x < lifeImgs.Length; x++)
-        {
-            if(x > lives -1)
-            {
-                if(x > lives -1)
-                {
-                    Destroy(lifeImgs[x]);
-                }
-            }
-        }
+        updateLife();
     }
 }
 

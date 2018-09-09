@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class EnemyController : CharacterBaseController
     public LayerMask wall;
     public LayerMask wayPoints;
     public Transform target;
+    [SerializeField] protected GameObject lifePrefab;
+    [SerializeField] protected static float chanceToSpawnLife = 0.0001F;
     [SerializeField] private Transform lastVisitedPoint;
     [SerializeField] private Queue<Transform> visitedPoints = new Queue<Transform>();
     [SerializeField] private string wayPointLayer;
@@ -30,8 +33,29 @@ public class EnemyController : CharacterBaseController
 
     protected override void Die()
     {
+        spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
         Destroy(gameObject, 0);
+    }
+    private void spawnLife()
+    {
+        if (GameObject.FindGameObjectsWithTag("Life").Length == 0 && target.GetComponent<PlayerController>().lives < 3)
+        {
+            if (UnityEngine.Random.value <= chanceToSpawnLife)
+            {
+                GameObject life = Instantiate(lifePrefab, transform.position, transform.rotation) as GameObject;
+                resetChance();
+            }
+            else
+            {
+                chanceToSpawnLife *= 2;
+            }
+        }
+
+    }
+    private void resetChance()
+    {
+        chanceToSpawnLife = 0.0001F;
     }
 
     protected override void LoseLife()
