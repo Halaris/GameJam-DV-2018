@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelGameManagerController : MonoBehaviour {
-    
+public class EndGameController : MonoBehaviour {
+
+	[SerializeField] private GameObject player;
+
 	void Start () {
 
 	}

@@ -1,12 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : CharacterBaseController
 {
 	[SerializeField] private GameObject[] lifeImgs;
+	public static long totalScore;
 
-    protected override void CharacterUpdate()
+	private void Awake()
+	{
+		DontDestroyOnLoad(this);
+	}
+
+	protected override void CharacterUpdate()
     {
         //Obtain directional movement defined on the inputs
         float verticalSpeed = Input.GetAxis("Vertical");
@@ -26,18 +33,24 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
-        Destroy(gameObject, 0);
+		// gameObject.SetActive(false);
     }
 
     protected override void LoseLife()
     {
-            for(int x=0; x<lifeImgs.Length; x++)
+            for(int x=0; x < lifeImgs.Length; x++)
             {
                 if(x > lives -1)
                 {
                     Destroy(lifeImgs[x]);
+					updateScore();
                 }
             }
     }
+
+	private void updateScore()
+	{
+		totalScore = 0;
+	}
 }
 
