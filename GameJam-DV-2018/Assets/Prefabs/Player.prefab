@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58663582759328790}
   - component: {fileID: 50532940767860314}
   - component: {fileID: 114452701432456440}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
     type: 2}
   minePrefab: {fileID: 1337174867245700, guid: 63c3622e53bd7de458c5f6f4aa5e180b, type: 2}
   score: 0
+  currentLifeScore: 0
   lives: 3
   enemyTag: Enemy
   damage: 1
