@@ -90,7 +90,7 @@ MonoBehaviour:
   damage: 0
   parent: {fileID: 0}
   creationTime: 0
-  activationTime: 3
+  activationTime: 1
   characters:
     serializedVersion: 2
     m_Bits: 1024
@@ -98,6 +98,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   explosion: {fileID: 1902097907349960, guid: b577f8d5224e4d74ea4ba5460484015d, type: 2}
+  explosionAS: {fileID: 82589778609169304, guid: a4dbe6efa51da134797494553dcbc7ab,
+    type: 2}
+  deployAS: {fileID: 82634907608601718, guid: 5119961f734d67349b52b121a373e889, type: 2}
   explosionRadius: 3
 --- !u!212 &212205035597210414
 SpriteRenderer:
