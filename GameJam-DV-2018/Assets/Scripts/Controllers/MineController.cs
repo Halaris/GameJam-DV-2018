@@ -36,9 +36,13 @@ public class MineController : MonoBehaviour
                 character.gameObject.GetComponent<CharacterBaseController>().GetDamaged(damage);
             }
         }
+
+		if (gameObject.GetComponent<AudioSource>() != null) {
+			gameObject.GetComponent<AudioSource>().Play();
+		}
+
         parent.minesLeft++;
         Destroy(gameObject);
-
     }
 
     // Update is called once per frame

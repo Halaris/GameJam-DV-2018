@@ -7,8 +7,7 @@ public class BulletController : MonoBehaviour {
 	public int damage;
     public string enemyTag;
 	public string sourceTag;
-    public AudioSource point;
-
+		
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (!(collision.gameObject.tag == sourceTag) && !(collision.gameObject.tag == gameObject.tag))
@@ -23,8 +22,7 @@ public class BulletController : MonoBehaviour {
 			}
             if(collision.gameObject.layer == 10 || collision.gameObject.layer == 8 || collision.gameObject.layer == 11)
             {
-                point.Play();
-                Destroy(gameObject);
+				Destroy(gameObject);
             }
 			    
 		}	

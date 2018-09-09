@@ -51,7 +51,7 @@ public class LevelGameManagerController : MonoBehaviour {
                 {
                     if (!spawn.gameObject.active)
                     {
-                        spawn.gameObject.active = true;
+                        spawn.gameObject.SetActive(true);
                         dificulty += 1f / 3f;
                         break;
                     }

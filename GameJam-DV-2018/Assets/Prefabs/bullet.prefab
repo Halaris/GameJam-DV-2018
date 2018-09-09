@@ -188,7 +188,6 @@ MonoBehaviour:
   damage: 0
   enemyTag: 
   sourceTag: 
-  point: {fileID: 82716550782335932}
 --- !u!212 &212042342476195888
 SpriteRenderer:
   m_ObjectHideFlags: 1
