@@ -110,8 +110,11 @@ public abstract class CharacterBaseController : MonoBehaviour {
 
     private void Update()
     {
-        UpdateRotation();
-        CharacterUpdate();
+        if(!LevelGameManagerController.pause)
+        {
+            UpdateRotation();
+            CharacterUpdate();
+        }
     }
 
 	protected bool V3Equal(Vector3 a, Vector3 b)
