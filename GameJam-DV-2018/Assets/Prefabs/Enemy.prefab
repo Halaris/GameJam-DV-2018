@@ -114,6 +114,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   target: {fileID: 0}
+  lifePrefab: {fileID: 1140641906629900, guid: ff5139169ee683e478f2be6124865e38, type: 2}
   lastVisitedPoint: {fileID: 0}
   wayPointLayer: WayPoint
 --- !u!212 &212782807054982260
