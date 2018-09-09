@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4537124417909822}
   - component: {fileID: 212205035597210414}
   - component: {fileID: 114431869405810850}
-  - component: {fileID: 58586007850014786}
+  - component: {fileID: 58620387589848172}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58586007850014786
+--- !u!58 &58620387589848172
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,10 +74,10 @@ MonoBehaviour:
   activationTime: 6
   characters:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   obstacle:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   explosionRadius: 3
 --- !u!212 &212205035597210414
 SpriteRenderer:
