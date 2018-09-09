@@ -66,11 +66,9 @@ public abstract class CharacterBaseController : MonoBehaviour {
         {
 
             GameObject mine = Instantiate(minePrefab, transform.position, transform.rotation) as GameObject;
-            //mine.GetComponent<Rigidbody2D>().velocity = new Vector2(lastDirection.x, lastDirection.y) * projectileSpeed;
             var mineController = mine.GetComponent<MineController>();
             mineController.damage = damage*2;
             mineController.parent = this;
-            //mine.gameObject.tag = gameObject.tag + "bullet";
             nextMine = Time.time + mineRate;
             minesLeft--;
         }

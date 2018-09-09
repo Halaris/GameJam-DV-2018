@@ -25,6 +25,7 @@ public class EnemyController : CharacterBaseController
     [SerializeField] private string wayPointLayer;
     [SerializeField] private GameObject explosion;
     public Stack<Transform> path;
+	[SerializeField] private AudioSource audioSource;
     [SerializeField] private Target currentTarget;
     private Vector3 lastPoint;
     private Action currentAction = Action.followingPath;
@@ -189,7 +190,8 @@ public class EnemyController : CharacterBaseController
         spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
         GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
-        Destroy(gameObject, 0);
+		Destroy(Instantiate(audioSource, transform.position, transform.rotation), 1);
+        Destroy(gameObject);
     }
 
     private void spawnLife()

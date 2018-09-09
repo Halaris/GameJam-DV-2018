@@ -12,12 +12,15 @@ public class MineController : MonoBehaviour
     [SerializeField] private LayerMask characters;
     [SerializeField] private LayerMask obstacle;
     [SerializeField] private GameObject explosion;
+	[SerializeField] private AudioSource explosionAS;
+	[SerializeField] private AudioSource deployAS;
     public float explosionRadius = 3f;
     // Use this for initialization
+
     void Start()
     {
         creationTime = Time.time;
-
+		Destroy(Instantiate(deployAS, transform.position, transform.rotation),1);
     }
 
     bool TargetWithClearVision(Transform targetPoint, LayerMask maskToAvoid)
@@ -37,9 +40,11 @@ public class MineController : MonoBehaviour
                 character.gameObject.GetComponent<CharacterBaseController>().GetDamaged(damage);
             }
         }
-        parent.minesLeft++;
+
+		parent.minesLeft++;
         GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
-        Destroy(gameObject);
+		Destroy(Instantiate(explosionAS, transform.position, transform.rotation),1);
+		Destroy(gameObject);
     }
 
     // Update is called once per frame

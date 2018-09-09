@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class LifeController : MonoBehaviour {
 
+	[SerializeField] private AudioSource lifeDeployAS;
+	[SerializeField] private AudioSource lifeCollAS;
+
 	// Use this for initialization
 	void Start () {
-		
+		Destroy(Instantiate(lifeDeployAS, transform.position, transform.rotation),1);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +22,8 @@ public class LifeController : MonoBehaviour {
                 player.lives++;
                 player.updateLife();
             }
-            Destroy(gameObject);
+			Destroy(Instantiate(lifeCollAS, transform.position, transform.rotation), 1);
+			Destroy(gameObject);
         }
     }
 

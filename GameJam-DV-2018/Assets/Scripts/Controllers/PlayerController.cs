@@ -26,7 +26,7 @@ public class PlayerController : CharacterBaseController
         {
             DropMine();
         }
-        if (score == MAX_SCORE)
+        if (score >= MAX_SCORE)
         {
             LevelGameManagerController.score = score;
             LevelGameManagerController.playerAlive = true;
@@ -44,15 +44,7 @@ public class PlayerController : CharacterBaseController
     {
         for (int x = 0; x < lifeImgs.Length; x++)
         {
-            if (x > lives - 1)
-            {
-                lifeImgs[x].active = false;
-            }
-            else
-            {
-                lifeImgs[x].active = true;
-            }
-
+			lifeImgs[x].SetActive(!(x > lives - 1));
         }
     }
     protected override void LoseLife()
@@ -60,8 +52,8 @@ public class PlayerController : CharacterBaseController
         score -= Mathf.RoundToInt(Mathf.Log10(1f + 9f * currentLifeScore / MAX_SCORE) * score);
         scoreValueText.text = score.ToString();
         currentLifeScore = 0;
-        speed *= 1.3f;
-        projectileSpeed *= 1.3f;
+        speed *= 1.1f;
+        projectileSpeed *= 1.2f;
         fireRate *= 0.8f;
         mineRate *= 0.8f;
         minesLeft += 1;
