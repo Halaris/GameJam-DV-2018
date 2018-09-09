@@ -96,16 +96,17 @@ MonoBehaviour:
     type: 2}
   minePrefab: {fileID: 0}
   score: 0
+  currentLifeScore: 0
   lives: 1
   enemyTag: Player
   damage: 1
   fireRate: 1
-  nextFire: 0
   mineRate: 0.5
+  nextFire: 0
   nextMine: 0
   minesLeft: 3
-  sightAngle: 120
-  sightDist: 6
+  sightAngle: 160
+  sightDist: 12
   wall:
     serializedVersion: 2
     m_Bits: 256
@@ -114,7 +115,7 @@ MonoBehaviour:
     m_Bits: 512
   target: {fileID: 0}
   lastVisitedPoint: {fileID: 0}
-  wayPointLayer: 
+  wayPointLayer: WayPoint
 --- !u!212 &212782807054982260
 SpriteRenderer:
   m_ObjectHideFlags: 1

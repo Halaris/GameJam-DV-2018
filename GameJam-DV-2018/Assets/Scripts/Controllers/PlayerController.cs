@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : CharacterBaseController
 {
-    private long MAX_SCORE = 10000;
+    public long MAX_SCORE = 1000;
 
     [SerializeField] private GameObject[] lifeImgs;
 
@@ -28,7 +28,9 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
-        Destroy(gameObject, 0);
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //Destroy(gameObject, 0);
     }
 
     protected override void LoseLife()
