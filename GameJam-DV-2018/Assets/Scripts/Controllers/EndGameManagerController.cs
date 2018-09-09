@@ -8,35 +8,40 @@ public class EndGameManagerController : MonoBehaviour {
 	[SerializeField] Text titleText;
 	[SerializeField] Text subTitleText;
 	[SerializeField] Text nameText;
-	[SerializeField] Text nameInput;
+	[SerializeField] InputField nameInput;
 	[SerializeField] Text creditsTitle;
+	public static string item;
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad(this);
+		titleText.text = ("GAME OVER");
+		nameText.text = ("YOUR SCORE WAS " + LevelGameManagerController.score);
+		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
+		nameInput.text = "";
 		if (LevelGameManagerController.playerAlive)
 		{
-			success(LevelGameManagerController.score);
+			success();
 		}
 		else {
-			fail(LevelGameManagerController.score);
+			fail();
 		}
 	}
 
-	private void success(long score)
+	private void Update()
 	{
-		titleText.text = ("GAME OVER");
-		subTitleText.text = ("CONGRATULATIONS");
-		nameText.text = ("YOUR SCORE WAS " + score);
-		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
-		// nameInput.text = ("");
+		if (nameInput.text != null && nameInput.text != "" && Input.GetKeyDown(KeyCode.Return)) {
+
+		}
 	}
 
-	private void fail(long score)
+	private void success()
 	{
-		titleText.text = ("GAME OVER");
+		subTitleText.text = ("CONGRATULATIONS");
+	}
+
+	private void fail()
+	{
 		subTitleText.text = ("YOU FAIL");
-		nameText.text = ("YOUR SCORE WAS " + score);
-		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
-		// nameInput.text = ("");
 	}
 }
