@@ -14,7 +14,6 @@ public class EndGameManagerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad(this);
 		titleText.text = ("GAME OVER");
 		nameText.text = ("YOUR SCORE WAS " + LevelGameManagerController.score);
 		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
@@ -26,12 +25,21 @@ public class EndGameManagerController : MonoBehaviour {
 		else {
 			fail();
 		}
-	}
+        nameInput.onValidateInput += delegate (string input, int charIndex, char addedChar) {
+            return ValidateForcesUppercase(addedChar);
+        };
+    }
 
-	private void Update()
+    private char ValidateForcesUppercase(char charToValidate)
+    {
+        return charToValidate.ToString().ToUpper()[0];
+    }
+
+    private void Update()
 	{
-		if (nameInput.text != null && nameInput.text != "" && Input.GetKeyDown(KeyCode.Return)) {
+		if (nameInput.text != null && nameInput.text != "" && (Input.GetButtonDown("Submit"))) {
 			persistScore(nameInput.text, LevelGameManagerController.score);
+			Destroy(GameObject.Find("LevelGameManagerController"));
 			SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Single);
 		}
 	}

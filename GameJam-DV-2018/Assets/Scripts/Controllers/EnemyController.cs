@@ -16,6 +16,8 @@ public class EnemyController : CharacterBaseController
     [SerializeField] private Transform lastVisitedPoint;
     [SerializeField] private Queue<Transform> visitedPoints = new Queue<Transform>();
     [SerializeField] private string wayPointLayer;
+    [SerializeField] private GameObject explosion;
+	[SerializeField] private AudioSource audioSource;
 
     bool TargetInFieldOfView(Transform targetPoint, float viewAngle, float viewDist)
     {
@@ -35,6 +37,8 @@ public class EnemyController : CharacterBaseController
     {
         spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
+        GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+		Instantiate(audioSource, transform.position, transform.rotation).Play();
         Destroy(gameObject, 0);
     }
     private void spawnLife()

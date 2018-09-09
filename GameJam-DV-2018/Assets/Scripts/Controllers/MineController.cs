@@ -11,12 +11,16 @@ public class MineController : MonoBehaviour
     [SerializeField] private float activationTime = 6f;
     [SerializeField] private LayerMask characters;
     [SerializeField] private LayerMask obstacle;
+    [SerializeField] private GameObject explosion;
+	[SerializeField] private AudioSource explosionAS;
+	[SerializeField] private AudioSource deployAS;
     public float explosionRadius = 3f;
     // Use this for initialization
+
     void Start()
     {
         creationTime = Time.time;
-
+		Instantiate(deployAS, transform.position, transform.rotation).Play();
     }
 
     bool TargetWithClearVision(Transform targetPoint, LayerMask maskToAvoid)
@@ -37,18 +41,19 @@ public class MineController : MonoBehaviour
             }
         }
 
-		if (gameObject.GetComponent<AudioSource>() != null) {
-			gameObject.GetComponent<AudioSource>().Play();
-		}
-
-        parent.minesLeft++;
-        Destroy(gameObject);
+		parent.minesLeft++;
+        GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+		Instantiate(explosionAS, transform.position, transform.rotation).Play();
+		Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (creationTime + activationTime <= Time.time)
+        {
+            GetComponent<Animator>().SetTrigger("Active");
             GetComponent<Collider2D>().enabled = true;
+        }
     }
 }

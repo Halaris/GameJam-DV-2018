@@ -7,7 +7,13 @@ public class BulletController : MonoBehaviour {
 	public int damage;
     public string enemyTag;
 	public string sourceTag;
-		
+	[SerializeField] private AudioSource bulletAS;
+
+	private void Start()
+	{
+		Instantiate(bulletAS, transform.position, transform.rotation).Play();
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (!(collision.gameObject.tag == sourceTag) && !(collision.gameObject.tag == gameObject.tag))
