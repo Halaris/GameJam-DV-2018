@@ -2,16 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBaseController
 {
     private long MAX_SCORE = 10000;
-	public static long totalScore;
-
-	private void Awake()
-	{
-		DontDestroyOnLoad(this);
-	}
+	[SerializeField] private GameObject[] lifeImgs;
 
 	protected override void CharacterUpdate()
     {
@@ -33,7 +29,9 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
-		// gameObject.SetActive(false);
+		LevelGameManagerController.score = score;
+		LevelGameManagerController.playerAlive = false;
+		SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
     }
 
     protected override void LoseLife()
@@ -54,15 +52,9 @@ public class PlayerController : CharacterBaseController
                 if(x > lives -1)
                 {
                     Destroy(lifeImgs[x]);
-					updateScore();
                 }
             }
         }
     }
-
-	private void updateScore()
-	{
-		totalScore = 0;
-	}
 }
 
