@@ -52,8 +52,8 @@ public class PlayerController : CharacterBaseController
         score -= Mathf.RoundToInt(Mathf.Log10(1f + 9f * currentLifeScore / MAX_SCORE) * score);
         scoreValueText.text = score.ToString();
         currentLifeScore = 0;
-        speed *= 1.3f;
-        projectileSpeed *= 1.3f;
+        speed *= 1.1f;
+        projectileSpeed *= 1.2f;
         fireRate *= 0.8f;
         mineRate *= 0.8f;
         minesLeft += 1;
