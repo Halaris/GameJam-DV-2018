@@ -27,7 +27,7 @@ public class EnemyController : CharacterBaseController
     public Stack<Transform> path;
 	[SerializeField] private AudioSource audioSource;
     [SerializeField] private Target currentTarget;
-    private Vector3 lastPoint;
+    private Target lastPoint;
     private Action currentAction = Action.followingPath;
     enum Action { followingPath, returningPath, followingPlayer, returningFromPersecution, idle };
     
@@ -54,12 +54,12 @@ public class EnemyController : CharacterBaseController
                 case Action.followingPlayer:
                     if (lastPoint == null)
                     {
-                        lastPoint = transform.position;
+                        lastPoint = new Target(transform.position);
                     }
                     if (currentTarget == null)
                     {
                         // If it gets to the last seen location of the player,it begins  to go to the last location he have when he had seen the user
-                        currentTarget = new Target(lastPoint);
+                        currentTarget = lastPoint;
                         currentAction = Action.returningFromPersecution;
                     }
                     break;
@@ -113,7 +113,7 @@ public class EnemyController : CharacterBaseController
 
                     break;
                 case Action.idle:
-                    Quaternion q = Quaternion.AngleAxis(UnityEngine.Random.RandomRange(0, 360), Vector3.forward);
+                    Quaternion q = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.forward);
                     transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
 
                     break;
@@ -189,7 +189,7 @@ public class EnemyController : CharacterBaseController
     {
         spawnLife();
         target.GetComponent<PlayerController>().IncreaseScore(100);
-        GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        Instantiate(explosion, transform.position, transform.rotation);
 		Instantiate(audioSource, transform.position, transform.rotation);
         Destroy(gameObject);
     }
@@ -200,7 +200,7 @@ public class EnemyController : CharacterBaseController
         {
             if (UnityEngine.Random.value <= chanceToSpawnLife)
             {
-                GameObject life = Instantiate(lifePrefab, transform.position, transform.rotation) as GameObject;
+                Instantiate(lifePrefab, transform.position, transform.rotation);
                 resetChance();
             }
             else

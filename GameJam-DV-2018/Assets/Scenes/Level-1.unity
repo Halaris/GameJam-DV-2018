@@ -42887,6 +42887,11 @@ Prefab:
       propertyPath: lifeImgs.Array.data[2]
       value: 
       objectReference: {fileID: 372495404}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: MAX_SCORE
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
   m_IsPrefabAsset: 0
@@ -43201,7 +43206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1926958319
 GameObject:

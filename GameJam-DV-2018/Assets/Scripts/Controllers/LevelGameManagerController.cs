@@ -66,7 +66,9 @@ public class LevelGameManagerController : MonoBehaviour
 
                 foreach (Transform spawn in spawners)
                 {
+                    #pragma warning disable CS0618 // Type or member is obsolete
                     if (!spawn.gameObject.active)
+                    #pragma warning restore CS0618 // Type or member is obsolete
                     {
                         spawn.gameObject.SetActive(true);
                         dificulty += 1f / 3f;
