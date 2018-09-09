@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : CharacterBaseController
 {
     public long MAX_SCORE = 1000;
+	[SerializeField] private GameObject[] lifeImgs;
 
-    [SerializeField] private GameObject[] lifeImgs;
-
-    protected override void CharacterUpdate()
+	protected override void CharacterUpdate()
     {
         //Obtain directional movement defined on the inputs
         float verticalSpeed = Input.GetAxis("Vertical");
@@ -28,9 +29,9 @@ public class PlayerController : CharacterBaseController
 
     protected override void Die()
     {
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        //Destroy(gameObject, 0);
+		LevelGameManagerController.score = score;
+		LevelGameManagerController.playerAlive = false;
+		SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
     }
 
     protected override void LoseLife()
@@ -48,7 +49,10 @@ public class PlayerController : CharacterBaseController
         {
             if(x > lives -1)
             {
-                Destroy(lifeImgs[x]);
+                if(x > lives -1)
+                {
+                    Destroy(lifeImgs[x]);
+                }
             }
         }
     }
