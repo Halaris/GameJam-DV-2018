@@ -11,6 +11,7 @@ public class MineController : MonoBehaviour
     [SerializeField] private float activationTime = 6f;
     [SerializeField] private LayerMask characters;
     [SerializeField] private LayerMask obstacle;
+    [SerializeField] private GameObject explosion;
     public float explosionRadius = 3f;
     // Use this for initialization
     void Start()
@@ -37,8 +38,8 @@ public class MineController : MonoBehaviour
             }
         }
         parent.minesLeft++;
+        GameObject explosionObj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
         Destroy(gameObject);
-
     }
 
     // Update is called once per frame
