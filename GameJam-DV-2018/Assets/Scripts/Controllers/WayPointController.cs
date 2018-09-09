@@ -7,7 +7,7 @@ public class WayPointController : MonoBehaviour {
 
     private void Awake()
     {
-        priority = Random.Range(1, 5);
+        //priority = Random.Range(1, 5);
     }
 
 }

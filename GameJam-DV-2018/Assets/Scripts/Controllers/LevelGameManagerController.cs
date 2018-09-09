@@ -49,13 +49,10 @@ public class LevelGameManagerController : MonoBehaviour {
 
                 foreach (Transform spawn in spawners)
                 {
-                    if (!spawn.gameObject.active)
-                    {
-                        spawn.gameObject.active = true;
-                        dificulty += 1f / 3f;
-                        break;
-                    }
+                    
+                     spawn.GetComponent<EnemySpawnerController>().maxQuantityEnemy++;
                 }
+                dificulty += 1f / 3f;
             }
         }
         

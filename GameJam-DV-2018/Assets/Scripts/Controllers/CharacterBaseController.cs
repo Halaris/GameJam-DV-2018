@@ -35,7 +35,6 @@ public abstract class CharacterBaseController : MonoBehaviour {
     }
     public void GetDamaged(int damage)
     {
-        Debug.Log("Fue dañado");
         this.lives -= damage;
         this.LoseLife();
         if (lives <= 0)

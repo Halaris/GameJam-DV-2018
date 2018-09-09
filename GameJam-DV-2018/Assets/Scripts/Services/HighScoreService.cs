@@ -90,7 +90,6 @@ public class HighScoreService
                     Debug.Log("list HighScore: " + result.RecordsAffected);
                     if (result.HasRows)
                     {
-                        Debug.Log("tests");
                         HighScore highScore;
                         while (result.Read())
                         {
