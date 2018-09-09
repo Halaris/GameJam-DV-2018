@@ -16,12 +16,12 @@ public abstract class CharacterBaseController : MonoBehaviour {
     [SerializeField] protected int lives;
     [SerializeField] protected string enemyTag;
     [SerializeField] protected int damage;
+    [SerializeField] protected float fireRate = 0.5F;
+    [SerializeField] protected float mineRate = 0.5F;
     protected Rigidbody2D rig;
     protected Vector3 origPos;
     protected Vector3 lastDirection = Vector3.right;
-    [SerializeField] private float fireRate = 0.5F;
     [SerializeField] private float nextFire = 0.0F;
-    [SerializeField] private float mineRate = 0.5F;
     [SerializeField] private float nextMine = 0.0F;
     [SerializeField] public int minesLeft = 3;
 

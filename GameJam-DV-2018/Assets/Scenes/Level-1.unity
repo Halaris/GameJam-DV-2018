@@ -41243,6 +41243,21 @@ Prefab:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[0]
+      value: 
+      objectReference: {fileID: 721442369}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1424616699}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[2]
+      value: 
+      objectReference: {fileID: 372495404}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
   m_IsPrefabAsset: 0
