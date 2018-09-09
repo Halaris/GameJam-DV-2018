@@ -2,41 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndGameManagerController : MonoBehaviour {
 
 	[SerializeField] Text titleText;
 	[SerializeField] Text subTitleText;
 	[SerializeField] Text nameText;
-	[SerializeField] Text nameInput;
+	[SerializeField] InputField nameInput;
 	[SerializeField] Text creditsTitle;
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad(this);
+		titleText.text = ("GAME OVER");
+		nameText.text = ("YOUR SCORE WAS " + LevelGameManagerController.score);
+		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
+		nameInput.text = "";
 		if (LevelGameManagerController.playerAlive)
 		{
-			success(LevelGameManagerController.score);
+			success();
 		}
 		else {
-			fail(LevelGameManagerController.score);
+			fail();
 		}
 	}
 
-	private void success(long score)
+	private void Update()
 	{
-		titleText.text = ("GAME OVER");
-		subTitleText.text = ("CONGRATULATIONS");
-		nameText.text = ("YOUR SCORE WAS " + score);
-		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
-		// nameInput.text = ("");
+		if (nameInput.text != null && nameInput.text != "" && Input.GetKeyDown(KeyCode.Return)) {
+			persistScore(nameInput.text, LevelGameManagerController.score);
+			SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Single);
+		}
 	}
 
-	private void fail(long score)
+	private void success()
 	{
-		titleText.text = ("GAME OVER");
+		subTitleText.text = ("CONGRATULATIONS");
+	}
+
+	private void fail()
+	{
 		subTitleText.text = ("YOU FAIL");
-		nameText.text = ("YOUR SCORE WAS " + score);
-		creditsTitle.text = ("WAS PRESENTED TO YOU BY");
-		// nameInput.text = ("");
+	}
+
+	private void persistScore(string name, long value) {
+		string dbPath = "URI=file:" + Application.persistentDataPath + "/database.db";
+		Debug.Log("dbPath: " + dbPath);
+		HighScoreService highScoreService = new HighScoreService(dbPath);
+		highScoreService.Insert(name, value);
 	}
 }

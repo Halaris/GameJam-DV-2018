@@ -177,10 +177,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CONGRATULATIONS / YOU FAIL
+  m_Text: 
 --- !u!222 &178840204
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -252,10 +252,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: YOUR SCORE WAS [SCORE]
+  m_Text: 
 --- !u!222 &282381538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -552,10 +552,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: WAS PRESENTED TO YOU BY
+  m_Text: 
 --- !u!222 &554095427
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -665,6 +665,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599ca8562c82f2744b87f927fb644b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 2142019638}
+  subTitleText: {fileID: 178840203}
+  nameText: {fileID: 282381537}
+  nameInput: {fileID: 1009542121}
+  creditsTitle: {fileID: 554095426}
 --- !u!4 &875248055
 Transform:
   m_ObjectHideFlags: 0
@@ -1114,10 +1119,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: GAME OVER
+  m_Text: 
 --- !u!222 &2142019639
 CanvasRenderer:
   m_ObjectHideFlags: 0

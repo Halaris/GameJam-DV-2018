@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : CharacterBaseController
 {
     public long MAX_SCORE = 1000;
+
 	[SerializeField] private GameObject[] lifeImgs;
 
 	protected override void CharacterUpdate()
@@ -25,6 +26,11 @@ public class PlayerController : CharacterBaseController
         {
             DropMine();
         }
+		if (score == MAX_SCORE) {
+			LevelGameManagerController.score = score;
+			LevelGameManagerController.playerAlive = true;
+			SceneManager.LoadScene("EndGame", LoadSceneMode.Single);
+		}
     }
 
     protected override void Die()
