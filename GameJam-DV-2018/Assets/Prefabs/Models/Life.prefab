@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4778661405590840}
   - component: {fileID: 212741182790017628}
   - component: {fileID: 114733001743703756}
+  - component: {fileID: 58271723627971668}
   m_Layer: 0
   m_Name: Life
   m_TagString: Untagged
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58271723627971668
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140641906629900}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
 --- !u!114 &114733001743703756
 MonoBehaviour:
   m_ObjectHideFlags: 1
