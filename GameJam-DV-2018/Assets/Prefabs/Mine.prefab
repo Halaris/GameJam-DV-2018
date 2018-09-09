@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4537124417909822}
   - component: {fileID: 212205035597210414}
   - component: {fileID: 114431869405810850}
+  - component: {fileID: 58586007850014786}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58586007850014786
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1337174867245700}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &114431869405810850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,6 +70,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   parent: {fileID: 0}
+  creationTime: 0
+  activationTime: 6
+  characters:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacle:
+    serializedVersion: 2
+    m_Bits: 0
+  explosionRadius: 3
 --- !u!212 &212205035597210414
 SpriteRenderer:
   m_ObjectHideFlags: 1

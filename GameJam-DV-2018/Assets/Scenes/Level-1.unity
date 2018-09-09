@@ -41026,6 +41026,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909108b08e2164046b6fa9c070bc7f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSize: 1
+  maxSize: 8
+  sensitivity: 3
 --- !u!4 &1323707907
 Transform:
   m_ObjectHideFlags: 0
@@ -41224,39 +41227,37 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
         type: 2}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
-        type: 2}
-    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
-        type: 2}
-      propertyPath: projectileSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
-        type: 2}
-      propertyPath: lives
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
-        type: 2}
-      propertyPath: enemyTag
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
-        type: 2}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1907010779648716, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
-        type: 2}
       propertyPath: scoreValueText
       value: 
       objectReference: {fileID: 1454044041}
+    - target: {fileID: 4437373980490062, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437373980490062, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 58663582759328790, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[0]
+      value: 
+      objectReference: {fileID: 721442369}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1424616699}
+    - target: {fileID: 114452701432456440, guid: 1bacd3c71a251424a8a0a90b6dfb2946,
+        type: 2}
+      propertyPath: lifeImgs.Array.data[2]
+      value: 
+      objectReference: {fileID: 372495404}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bacd3c71a251424a8a0a90b6dfb2946, type: 2}
   m_IsPrefabAsset: 0
