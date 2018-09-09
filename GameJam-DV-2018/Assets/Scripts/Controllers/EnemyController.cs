@@ -17,8 +17,7 @@ public class EnemyController : CharacterBaseController
     bool TargetInFieldOfView(Transform targetPoint, float viewAngle, float viewDist)
     {
         Vector3 targetDir = targetPoint.position - transform.position;
-        Vector3 forward = transform.position - origPos;
-        float enemyAngle = Vector3.Angle(targetDir, forward);
+        float enemyAngle = Vector3.Angle(targetDir, lastDirection);
         var dist = Vector3.Distance(targetPoint.position, this.transform.position);
         return (enemyAngle < viewAngle && dist < viewDist);
     }
@@ -43,7 +42,6 @@ public class EnemyController : CharacterBaseController
     {
         if (collision.gameObject.GetComponent<EnemyController>() != null)
         {
-            Debug.Log("Dara vueltas");
             transform.Rotate(Vector3.forward * 180);
             visitedPoints.Clear();
             lastVisitedPoint = null;
@@ -114,7 +112,10 @@ public class EnemyController : CharacterBaseController
 
                     moveDirection = Vector3.zero;
                 }
-                Fire();
+                if(TargetInFieldOfView(target, sightAngle/3, sightDist))
+                {
+                    Fire();
+                }
             }
             else
             {

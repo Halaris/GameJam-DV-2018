@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212205035597210414}
   - component: {fileID: 114431869405810850}
   - component: {fileID: 58620387589848172}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   damage: 0
   parent: {fileID: 0}
   creationTime: 0
-  activationTime: 6
+  activationTime: 3
   characters:
     serializedVersion: 2
     m_Bits: 1024
