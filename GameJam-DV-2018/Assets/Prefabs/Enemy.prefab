@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58789273212068376}
   - component: {fileID: 50125889238533554}
   - component: {fileID: 114218988239835572}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -94,12 +94,16 @@ MonoBehaviour:
   projectileSpeed: 12
   projectilePrefab: {fileID: 1974765122018786, guid: edbc2abbac6f57946ab1eb92a093a144,
     type: 2}
+  minePrefab: {fileID: 0}
   score: 0
   lives: 1
   enemyTag: Player
   damage: 1
   fireRate: 1
   nextFire: 0
+  mineRate: 0.5
+  nextMine: 0
+  minesLeft: 3
   sightAngle: 120
   sightDist: 6
   wall:
@@ -110,6 +114,7 @@ MonoBehaviour:
     m_Bits: 512
   target: {fileID: 0}
   lastVisitedPoint: {fileID: 0}
+  wayPointLayer: 
 --- !u!212 &212782807054982260
 SpriteRenderer:
   m_ObjectHideFlags: 1

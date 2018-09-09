@@ -11,6 +11,8 @@ public class EnemyController : CharacterBaseController
     public LayerMask wayPoints;
     public Transform target;
     [SerializeField] private Transform lastVisitedPoint;
+    [SerializeField] private Queue<Transform> visitedPoints = new Queue<Transform>();
+    [SerializeField] private string wayPointLayer;
 
     bool TargetInFieldOfView(Transform targetPoint, float viewAngle, float viewDist)
     {
@@ -36,33 +38,59 @@ public class EnemyController : CharacterBaseController
     protected override void LoseLife()
     {
     }
-    private Vector3 SearchWayPoint(Vector3 moveDirection)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //moveDirection = gameObject.transform.position - origPos;
-        Vector3 forward = transform.position - origPos;
+        if (collision.gameObject.GetComponent<EnemyController>() != null)
+        {
+            Debug.Log("Dara vueltas");
+            transform.Rotate(Vector3.forward * 180);
+            visitedPoints.Clear();
+            lastVisitedPoint = null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (LayerMask.LayerToName(collision.gameObject.layer) == wayPointLayer)
+        {
+            if (lastVisitedPoint != null)
+            {
+                visitedPoints.Enqueue(lastVisitedPoint);
+            }
+            lastVisitedPoint = collision.transform;
+        } 
+    }
+    
+    private Vector3 SearchWayPoint(Vector3 moveDirection, float pointDistanceDetection, float pointAngleDetection)
+    {
+        //moveDirection = gameObject.transform.position - origPos
         SortedDictionary<double, Transform> visiblePoints = new SortedDictionary<double, Transform>();
-        Collider2D[] wayPointsInViewRadius = Physics2D.OverlapCircleAll(transform.position, sightDist, wayPoints);
+        Collider2D[] wayPointsInViewRadius = Physics2D.OverlapCircleAll(transform.position, pointDistanceDetection, wayPoints);
         foreach (Collider2D wayPointInFieldOfView in wayPointsInViewRadius)
         {
             Transform targetPoint = wayPointInFieldOfView.transform;
-            if (targetPoint != lastVisitedPoint && TargetInFieldOfView(targetPoint, sightAngle, sightDist) && TargetWithClearVision(targetPoint,wall) && TargetWithClearVision(targetPoint, this.gameObject.layer))
+            if (targetPoint != lastVisitedPoint && TargetInFieldOfView(targetPoint, pointAngleDetection, pointDistanceDetection) && TargetWithClearVision(targetPoint,wall) && TargetWithClearVision(targetPoint, this.gameObject.layer))
             {
+                
                 float dist = Vector3.Distance(targetPoint.position, transform.position);
-                if (dist < 1)
-                {
-                    lastVisitedPoint = targetPoint;
-                }
-                else
-                {
-                    float priorityValue = targetPoint.gameObject.GetComponent<WayPointController>().priority * dist;
-                    visiblePoints.Add(priorityValue, targetPoint);
-                }
+             
+                    float priorityLose;
+                    priorityLose = targetPoint.gameObject.GetComponent<WayPointController>().priority;
+                    float priorityValue = dist / (priorityLose);
+                    if (!visitedPoints.Contains(targetPoint))
+                        visiblePoints.Add(priorityValue, targetPoint);
+                
             }
         }
         SortedDictionary<double, Transform>.Enumerator numerator = visiblePoints.GetEnumerator();
         if (numerator.MoveNext())
         {
             return numerator.Current.Value.position - transform.position;
+        } else if(visitedPoints.Count >0)
+        {
+            return visitedPoints.Dequeue().position - transform.position;
         }
         return moveDirection;
     }
@@ -77,7 +105,6 @@ public class EnemyController : CharacterBaseController
                 {
 
                     moveDirection = target.position - gameObject.transform.position;
-                    Debug.Log(moveDirection);
                 } else
                 {
                     Vector3 vectorToTarget = target.position - transform.position;
@@ -91,7 +118,7 @@ public class EnemyController : CharacterBaseController
             }
             else
             {
-                moveDirection = SearchWayPoint(moveDirection);
+                moveDirection = SearchWayPoint(moveDirection, sightDist*2, sightAngle*1.5f);
             }
 
 
